@@ -5,7 +5,7 @@ class Solution {
         Map<Integer, Integer> freq = new HashMap<>();
         for (int x : nums) freq.put(x, freq.getOrDefault(x, 0) + 1);
 
-        // min-heap by frequency
+      
         PriorityQueue<Integer> pq = new PriorityQueue<>(
             (a, b) -> Integer.compare(freq.get(a), freq.get(b))
         );
@@ -15,7 +15,6 @@ class Solution {
             if (pq.size() > k) pq.poll();
         }
 
-        // poll to get exactly k elements (any order is fine for LC-347)
         int[] res = new int[pq.size()];
         for (int i = 0; i < res.length; i++) {
             res[i] = pq.poll();
