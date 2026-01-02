@@ -15,7 +15,7 @@ class Solution {
                     stk.pop();
                 }
                 else{
-                    stk.push(c);
+                    return false;
                 }
 
             }
