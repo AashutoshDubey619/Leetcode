@@ -1,12 +1,20 @@
 class Solution {
     public int repeatedNTimes(int[] nums) {
-        HashMap<Integer , Integer> map = new HashMap<>();
-
-        for(int num : nums){
-            map.put(num , map.getOrDefault(num ,0)+1);
-            if(map.get(num) > 1) return num;
-        }
         
+        int freq[] = new int[100000];
+        int max_idx = 0;
+
+        for(int i=0;i<nums.length;i++){
+            max_idx = Math.max(nums[i] , max_idx);
+            freq[nums[i]]++;
+        }
+
+        for(int i=0;i<max_idx+1;i++){
+            if(freq[i] > 1){
+                return i;
+            }
+        }
+
         return -1;
     }
-}
+}   
