@@ -3,8 +3,6 @@ class Solution {
         
         int[] ans = new int[temperatures.length];
 
-        Arrays.fill(ans , 0);
-
         Stack<Integer> stk = new Stack<>();
 
 
