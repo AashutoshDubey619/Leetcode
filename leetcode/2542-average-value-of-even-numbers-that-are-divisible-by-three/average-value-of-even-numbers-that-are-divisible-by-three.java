@@ -11,8 +11,6 @@ class Solution {
             }
         }
 
-        if(count == 0) return 0;
-
-        return sum/count;
+       return count == 0 ? 0 : sum / count;
     }
 }
