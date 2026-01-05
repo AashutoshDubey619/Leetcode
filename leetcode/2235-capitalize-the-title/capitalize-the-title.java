@@ -1,27 +1,22 @@
 class Solution {
     public String capitalizeTitle(String title) {
-        
-          
 
-       String[] words = title.split(" ");
+        String[] words = title.split(" ");
+        StringBuilder sb = new StringBuilder();
 
-            for (int i = 0; i < words.length; i++) {
-                if (words[i].length() == 1 || words[i].length() == 2) {
-                    words[i] = words[i].toLowerCase();
-                }
-                else{
-                    words[i] = Character.toUpperCase(words[i].charAt(0)) + (words[i].substring(1)).toLowerCase();
-                }
+        for (int i = 0; i < words.length; i++) {
+            if (words[i].length() <= 2) {
+                sb.append(words[i].toLowerCase());
+            } else {
+                sb.append(Character.toUpperCase(words[i].charAt(0)))
+                  .append(words[i].substring(1).toLowerCase());
             }
 
-
-            String res = "";
-
-            for(int i=0;i<words.length;i++){
-                res += " "+ words[i];
+            if (i < words.length - 1) {
+                sb.append(" ");
             }
+        }
 
-
-        return res.trim();
+        return sb.toString();
     }
 }
