@@ -4,7 +4,7 @@ class Solution {
 
         int[] ans = prices.clone();
 
-        Stack<Integer> stk = new Stack<>();
+        Deque<Integer> stk = new ArrayDeque<>();
 
         ans = prices;
 
