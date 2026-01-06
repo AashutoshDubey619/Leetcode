@@ -3,15 +3,17 @@ class Solution {
 
         Stack<Integer> stk = new Stack<>();
 
-        for (int a : asteroids) {
+        for (int i = 0; i < asteroids.length; i++) {
+            int curr = asteroids[i];
 
-            if (a < 0) {
+            if (!stk.isEmpty() && stk.peek() > 0 && curr < 0) {
+
                 boolean alive = true;
 
-                while (alive && !stk.isEmpty() && stk.peek() > 0) {
-                    if (stk.peek() < -a) {
+                while (!stk.isEmpty() && stk.peek() > 0 && alive) {
+                    if (stk.peek() < -curr) {
                         stk.pop();
-                    } else if (stk.peek() == -a) {
+                    } else if (stk.peek() == -curr) {
                         stk.pop();
                         alive = false;
                     } else {
@@ -19,10 +21,10 @@ class Solution {
                     }
                 }
 
-                if (alive) stk.push(a);
+                if (alive) stk.push(curr);
 
             } else {
-                stk.push(a);
+                stk.push(curr);
             }
         }
 
