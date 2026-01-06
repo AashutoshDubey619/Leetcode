@@ -7,6 +7,7 @@ class Solution {
             while(j < words[i].length()/2){
                 if(!(words[i].charAt(j) == words[i].charAt(words[i].length()- 1 - j))){
                     palindrome = false;
+                    break;
                 }
                 j++;
             }
