@@ -13,7 +13,7 @@ class Solution {
 
           
             if (curr[0] < prev[1]) {
-                count++; // one interval removed
+                count++; 
 
                 
                 if (curr[1] < prev[1]) {
