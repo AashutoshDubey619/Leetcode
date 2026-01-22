@@ -1,44 +1,28 @@
 class Solution {
     public List<Integer> twoOutOfThree(int[] nums1, int[] nums2, int[] nums3) {
-        
-       List<Integer> list = new ArrayList<>();
 
-        HashSet<Integer> set1 = new HashSet<>();
-        HashSet<Integer> set2 = new HashSet<>();
-        HashSet<Integer> set3 = new HashSet<>();
+        HashSet<Integer> s1 = new HashSet<>();
+        HashSet<Integer> s2 = new HashSet<>();
+        HashSet<Integer> s3 = new HashSet<>();
 
-        for(int n : nums1){
-            set1.add(n);
-        }
-        for(int n : nums2){
-            set2.add(n);
-        }
-        for(int n : nums3){
-            set3.add(n);
-        }
+        for (int n : nums1) s1.add(n);
+        for (int n : nums2) s2.add(n);
+        for (int n : nums3) s3.add(n);
 
-        for(int n  : nums1){
-            if((set1.contains(n) && set2.contains(n)) || (set1.contains(n) && set3.contains(n)) || (set2.contains(n) && set3.contains(n)) ){
-                if(!list.contains(n)){
-                list.add(n);
-                }
-            }
-        }
-        for(int n  : nums2){
-            if((set1.contains(n) && set2.contains(n)) || (set1.contains(n) && set3.contains(n)) || (set2.contains(n) && set3.contains(n)) ){
-                if(!list.contains(n)){
-                list.add(n);
-                }
-            }
-        }
-        for(int n  : nums3){
-            if((set1.contains(n) && set2.contains(n)) || (set1.contains(n) && set3.contains(n)) || (set2.contains(n) && set3.contains(n)) ){
-                if(!list.contains(n)){
-                list.add(n);
-                }
+        HashSet<Integer> res = new HashSet<>();
+
+        for (int n : s1) {
+            if (s2.contains(n) || s3.contains(n)) {
+                res.add(n);
             }
         }
 
-        return list;
+        for (int n : s2) {
+            if (s3.contains(n)) {
+                res.add(n);
+            }
+        }
+
+        return new ArrayList<>(res);
     }
 }
