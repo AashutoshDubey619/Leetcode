@@ -1,35 +1,37 @@
-/**
- * Definition for a binary tree node.
- * public class TreeNode {
- *     int val;
- *     TreeNode left;
- *     TreeNode right;
- *     TreeNode(int x) { val = x; }
- * }
- */
 class Solution {
+
     public TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
-        if(root == null)return root;
 
-        if(bothExist(root.left , p , q)){
-            return lowestCommonAncestor(root.left , p , q);
-        } 
-        else if(bothExist(root.right , p , q)){
-           return lowestCommonAncestor(root.right , p , q);
-        } 
+        if (root == null)
+            return null;
 
-        return root;
+        if (root == p || root == q)
+            return root;
+
+        boolean pLiesInLeft = exists(root.left, p);
+        boolean qLiesInLeft = exists(root.left, q);
+
+       
+        if (pLiesInLeft && qLiesInLeft)
+            return lowestCommonAncestor(root.left, p, q);
+
+       
+        else if (!pLiesInLeft && !qLiesInLeft)
+            return lowestCommonAncestor(root.right, p, q);
+
+        
+        else
+            return root;
     }
 
+    private boolean exists(TreeNode root, TreeNode target) {
 
-        public boolean bothExist(TreeNode root, TreeNode p, TreeNode q) {
-            return find(root, p) && find(root, q);
-        }
+        if (root == null)
+            return false;
 
-        public boolean find(TreeNode root, TreeNode target) {
-            if (root == null) return false;
-            if (root == target) return true;
-            return find(root.left, target) || find(root.right, target);
-        }
+        if (root == target)
+            return true;
 
+        return exists(root.left, target) || exists(root.right, target);
+    }
 }
