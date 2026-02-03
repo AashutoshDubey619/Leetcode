@@ -1,24 +1,27 @@
 class Solution {
     public String reverseVowels(String s) {
-        
-        String vowels = "aeiouAEIOU";
-        int lidx = 0;  
-        int ridx = s.length()-1; 
 
+        String vowels = "aeiouAEIOU";
+        int lidx = 0, ridx = s.length() - 1;
         StringBuilder sb = new StringBuilder(s);
 
-        while(lidx < ridx){
-            if(vowels.contains(String.valueOf(s.charAt(lidx))) && vowels.contains(String.valueOf(s.charAt(ridx)))){
+        while (lidx < ridx) {
+            if (vowels.indexOf(sb.charAt(lidx)) != -1 &&
+                vowels.indexOf(sb.charAt(ridx)) != -1) {
+
                 char temp = sb.charAt(lidx);
-                sb.setCharAt(lidx , sb.charAt(ridx));
-                sb.setCharAt(ridx , temp);
+                sb.setCharAt(lidx, sb.charAt(ridx));
+                sb.setCharAt(ridx, temp);
+
                 lidx++;
                 ridx--;
             }
-            else if(vowels.contains(String.valueOf(s.charAt(lidx))) && !vowels.contains(String.valueOf(s.charAt(ridx)))) {
+            else if (vowels.indexOf(sb.charAt(lidx)) != -1) {
                 ridx--;
             }
-            else lidx++;
+            else {
+                lidx++;
+            }
         }
 
         return sb.toString();
