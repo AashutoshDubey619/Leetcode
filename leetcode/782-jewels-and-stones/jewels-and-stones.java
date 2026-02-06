@@ -1,11 +1,15 @@
 class Solution {
     public int numJewelsInStones(String jewels, String stones) {
-        int count = 0;
+        boolean[] freq = new boolean[128];
 
-        for(int i=0;i<stones.length();i++){
-            if(jewels.contains(String.valueOf(stones.charAt(i)))) count++;
+        for(char c : jewels.toCharArray()) {
+            freq[c] = true;
         }
 
+        int count = 0;
+        for(char c : stones.toCharArray()) {
+            if(freq[c]) count++;
+        }
         return count;
     }
 }
