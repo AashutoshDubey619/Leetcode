@@ -1,15 +1,15 @@
 class Solution {
     public int mostWordsFound(String[] sentences) {
-        int max_words = 0;
+        int max = 0;
 
-        for(int i=0;i<sentences.length;i++){
-            sentences[i].trim();
-
-            String[] parts = sentences[i].split(" ");
-
-            max_words = Math.max(max_words , parts.length);
+        for(String s : sentences){
+            int count = 1; 
+            for(char c : s.toCharArray()){
+                if(c == ' ') count++;
+            }
+            max = Math.max(max, count);
         }
 
-        return max_words;
+        return max;
     }
 }
