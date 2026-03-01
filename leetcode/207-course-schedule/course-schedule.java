@@ -3,41 +3,45 @@ class Solution {
         
         ArrayList<ArrayList<Integer>> adj = new ArrayList<>();
 
-        for(int i=0;i<numCourses;i++){
+        for(int i = 0; i < numCourses; i++){
             adj.add(new ArrayList<>());
         }
 
-        int indegree[] = new int[numCourses];
+        int[] indegree = new int[numCourses];
 
-        for(int i=0;i<prerequisites.length;i++){
+        
+        for(int i = 0; i < prerequisites.length; i++){
             int u = prerequisites[i][0];
-            int v = prerequisites[i][1];
-
-            adj.get(u).add(v);
-            indegree[v]++;
+            int v = prerequisites[i][1]; 
+            
+            adj.get(v).add(u);   
+            indegree[u]++;
         }
 
         Queue<Integer> q = new LinkedList<>();
 
-        for(int i=0;i<numCourses;i++){
-            if(indegree[i] == 0)q.add(i);
+        
+        for(int i = 0; i < numCourses; i++){
+            if(indegree[i] == 0){
+                q.add(i);
+            }
         }
 
-        ArrayList<Integer> res = new ArrayList<>();
+        int count = 0;
 
-        while(q.size() > 0){
-            int vertex = q.poll();
-            res.add(vertex);
+        while(!q.isEmpty()){
+            int node = q.poll();
+            count++;
 
-            for(int el : adj.get(vertex)){
-                if(indegree[el] != 0){
-                    indegree[el]--;
-                    if(indegree[el] == 0)q.add(el);
+            for(int neighbour : adj.get(node)){
+                indegree[neighbour]--;
+                if(indegree[neighbour] == 0){
+                    q.add(neighbour);
                 }
             }
         }
 
         
-        return !(res.size() < numCourses);
+        return count == numCourses;
     }
 }
