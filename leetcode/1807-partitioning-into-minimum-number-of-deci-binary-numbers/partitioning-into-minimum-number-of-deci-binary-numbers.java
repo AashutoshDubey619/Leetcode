@@ -5,6 +5,9 @@ class Solution {
 
         for(int i=0;i<n.length();i++){
             max_dig = Math.max(max_dig , n.charAt(i)-'0');
+            if (max_dig == 9) {
+                return 9;
+            }
         }
 
         return max_dig;
