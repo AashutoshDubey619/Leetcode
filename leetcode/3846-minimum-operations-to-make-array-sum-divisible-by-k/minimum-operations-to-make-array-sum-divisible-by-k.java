@@ -3,10 +3,7 @@ class Solution {
         
         int total_sum = 0;
 
-        for(int n : nums)total_sum += n;
-
-        if(total_sum % k ==0) return 0;
-        
+        for(int n : nums)total_sum += n;        
         return total_sum % k;
     }
 }
