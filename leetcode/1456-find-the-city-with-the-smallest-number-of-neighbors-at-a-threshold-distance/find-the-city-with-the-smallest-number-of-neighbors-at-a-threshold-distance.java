@@ -30,26 +30,21 @@ class Solution {
         }
 
 
-        int[] thresh = new int[n];
+        int min = Integer.MAX_VALUE;
+        int city = -1;
+        
 
         for(int i=0;i<n;i++){
             int count = 0;
             for(int j=0;j<n;j++){
                 if(i != j && dist[i][j] <= distanceThreshold) count++;
             }
-            thresh[i] = count;
-        }
-
-        int min = Integer.MAX_VALUE;
-        int city = -1;
-
-        for(int i=0;i<n;i++){
-            if(thresh[i] <= min){
-                min = thresh[i];
+            if(count <= min){
+                min = count;
                 city = i;
             }
         }
-
+        
         return city;
     }
 }
