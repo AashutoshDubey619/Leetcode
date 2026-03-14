@@ -1,50 +1,61 @@
 class Solution {
     public int findTheCity(int n, int[][] edges, int distanceThreshold) {
-        
-        int[][] dist = new int[n][n];
-        for(int i=0;i<n;i++){
-            for(int j=0;j<n;j++){
-                if(i == j) dist[i][j] = 0;
-                else dist[i][j] = Integer.MAX_VALUE;
-            }
+
+        ArrayList<ArrayList<int[]>> adj = new ArrayList<>();
+
+        for(int i=0;i<n;i++)
+            adj.add(new ArrayList<>());
+
+        for(int[] e : edges){
+            adj.get(e[0]).add(new int[]{e[1], e[2]});
+            adj.get(e[1]).add(new int[]{e[0], e[2]});
         }
-
-        for(int i=0;i<edges.length;i++){
-            int u = edges[i][0];
-            int v = edges[i][1];
-
-            dist[u][v] = edges[i][2];
-            dist[v][u] = edges[i][2];
-        }
-
-
-
-        for(int k=0;k<n;k++){
-            for(int i=0;i<n;i++){
-                for(int j=0;j<n;j++){
-                    if(dist[i][k] != Integer.MAX_VALUE && dist[k][j] != Integer.MAX_VALUE){
-                        dist[i][j] = Math.min(dist[i][j] , dist[i][k] + dist[k][j]);
-                    }
-                }
-            }
-        }
-
 
         int min = Integer.MAX_VALUE;
         int city = -1;
-        
 
         for(int i=0;i<n;i++){
-            int count = 0;
-            for(int j=0;j<n;j++){
-                if(i != j && dist[i][j] <= distanceThreshold) count++;
+
+            int[] dist = new int[n];
+            Arrays.fill(dist, Integer.MAX_VALUE);
+
+            PriorityQueue<int[]> pq =
+                new PriorityQueue<>((a,b)->a[1]-b[1]);
+
+            pq.offer(new int[]{i,0});
+            dist[i] = 0;
+
+            while(!pq.isEmpty()){
+
+                int[] cur = pq.poll();
+                int node = cur[0];
+                int d = cur[1];
+
+                for(int[] nei : adj.get(node)){
+
+                    int next = nei[0];
+                    int w = nei[1];
+
+                    if(d + w < dist[next]){
+                        dist[next] = d + w;
+                        pq.offer(new int[]{next, dist[next]});
+                    }
+                }
             }
+
+            int count = 0;
+
+            for(int j=0;j<n;j++){
+                if(i != j && dist[j] <= distanceThreshold)
+                    count++;
+            }
+
             if(count <= min){
                 min = count;
                 city = i;
             }
         }
-        
+
         return city;
     }
 }
