@@ -22,25 +22,25 @@ class Solution {
        return bfs(source , destination , visited , adj);
     }
 
-    public boolean bfs(int source , int destination , boolean[] visited ,ArrayList<ArrayList<Integer>> adj ){
-        visited[source] = true;
+    public boolean bfs(int source, int destination, boolean[] visited, ArrayList<ArrayList<Integer>> adj) {
 
-        Queue<Integer> q = new LinkedList<>();
+    Queue<Integer> q = new LinkedList<>();
+    q.add(source);
+    visited[source] = true;
 
-        q.add(source);
+    while(!q.isEmpty()) {
+        int node = q.poll();
 
-        while(q.size() > 0){
-            int node = q.poll();
+        if(node == destination) return true;
 
-            for(int el : adj.get(node)){
-                if(!visited[el]){
-                    if(el == destination) return true;
-                    visited[el] = true;
-                    q.add(el);
-                }
+        for(int el : adj.get(node)) {
+            if(!visited[el]) {
+                visited[el] = true;
+                q.add(el);
             }
         }
-
-        return false;
     }
+
+    return false;
+}
 }
