@@ -3,20 +3,16 @@ class Solution {
         
         StringBuilder sb = new StringBuilder();
 
-        Stack<Character> stk = new Stack<>();
+        for(int i = 0; i < s.length(); i++){
+            char ch = s.charAt(i);
 
-        for(int i=0;i<s.length();i++){
-            if(s.charAt(i) == '*'){
-                sb.deleteCharAt(sb.length()-1);
-                stk.pop();
+            if(ch == '*'){
+                sb.deleteCharAt(sb.length() - 1);
+            } else {
+                sb.append(ch);
             }
-            else{
-                stk.push(s.charAt(i));
-                sb.append(s.charAt(i));
-            } 
         }
 
         return sb.toString();
-
     }
 }
