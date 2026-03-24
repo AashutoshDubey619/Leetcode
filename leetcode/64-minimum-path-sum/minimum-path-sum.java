@@ -9,16 +9,16 @@ class Solution {
             Arrays.fill(dp[i] , -1);
         }
 
-        return pathsum(m-1 , n-1 , m , n, grid  , dp );
+        return pathsum(m-1 , n-1 , grid  , dp );
     }
 
-    public int pathsum(int row , int col , int m , int n , int[][] grid , int[][] dp){
+    public int pathsum(int row , int col , int[][] grid , int[][] dp){
         if(row < 0 || col < 0)return Integer.MAX_VALUE;
 
         if(row == 0 && col == 0)return grid[0][0];
 
         if(dp[row][col] != -1)return dp[row][col];
 
-        return dp[row][col] = grid[row][col] + Math.min(pathsum(row-1,col,m,n,grid , dp) , pathsum(row , col-1 , m , n , grid , dp)); 
+        return dp[row][col] = grid[row][col] + Math.min(pathsum(row-1,col,grid , dp) , pathsum(row , col-1 , grid , dp)); 
     }
 }
