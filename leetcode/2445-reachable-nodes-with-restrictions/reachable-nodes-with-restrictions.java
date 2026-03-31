@@ -21,6 +21,8 @@ class Solution {
         Queue<Integer> q = new LinkedList<>();
         q.add(0);
         vis[0] = true;
+
+        int count = 1;
         
         while(q.size() > 0){
             int node = q.poll();
@@ -28,17 +30,12 @@ class Solution {
             vis[node] = true;
 
             for(int el : adj.get(node)){
+                if(vis[el])count++;
                 if(!set.contains(el) && !vis[el]){
                     vis[el] = true;
                     q.add(el);
                 }
             }
-        }
-
-        int count = 0;
-
-        for(int i=0;i<vis.length;i++){
-            if(vis[i])count++;
         }
 
         return count;
