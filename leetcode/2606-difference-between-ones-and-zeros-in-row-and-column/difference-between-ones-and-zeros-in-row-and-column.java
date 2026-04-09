@@ -4,8 +4,6 @@ class Solution {
         int m = grid.length;
         int n = grid[0].length;
 
-        int[][] diff = new int[m][n];
-
         int[] onesRow = new int[m];
         int[] onesCol = new int[n];
 
@@ -32,10 +30,10 @@ class Solution {
 
         for(int i=0;i<m;i++){
             for(int j=0;j<n;j++){
-                diff[i][j] = onesRow[i] + onesCol[j] - (n-onesRow[i]) - (m - onesCol[j]);
+                grid[i][j] = onesRow[i] + onesCol[j] - (n-onesRow[i]) - (m - onesCol[j]);
             }
         }
 
-        return diff;
+        return grid;
     }
 }
