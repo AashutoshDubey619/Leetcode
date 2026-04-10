@@ -31,25 +31,20 @@ class Solution {
             if(node.right != null)q.add(node.right);
 
             if(node.val % 2 == 0){
-                boolean flag = false;
                 if(node.left != null){
                     if(node.left.left != null){
                         sum += node.left.left.val;
-                        flag = true;
                         }
                     if(node.left.right != null){
                         sum += node.left.right.val;
-                        flag = true;
                         }
                 }
                 if(node.right != null){
                     if(node.right.left != null){
                         sum += node.right.left.val;
-                        flag = true;
                         }
                     if(node.right.right != null){
                         sum += node.right.right.val;
-                        flag = true;
                         }  
                 }
 
