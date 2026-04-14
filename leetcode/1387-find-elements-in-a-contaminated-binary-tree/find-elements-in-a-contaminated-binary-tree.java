@@ -15,22 +15,16 @@
  */
 class FindElements {
     TreeNode contTree = new TreeNode(); 
+    HashSet<Integer> set = new HashSet<>();
     public FindElements(TreeNode root) {
         contTree = root;
         contaminate(contTree);
     }
     
     public boolean find(int target) {
-        return dhund(contTree , target);
+        return set.contains(target);
     }
 
-    public boolean dhund( TreeNode countTree , int target){
-        if(countTree == null)return false;
-
-        if(countTree.val == target)return true;
-
-        return dhund(countTree.left , target) || dhund(countTree.right , target);
-    }
 
     public void contaminate(TreeNode contTree){
         contTree.val = 0;
@@ -41,6 +35,8 @@ class FindElements {
 
         while(!q.isEmpty()){
             TreeNode node = q.poll();
+
+            set.add(node.val);
 
             if(node.left != null){
                 node.left.val = 2*node.val+1;
