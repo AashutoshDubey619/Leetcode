@@ -1,13 +1,31 @@
 class Solution {
     public int getMinDistance(int[] nums, int target, int start) {
-        
 
-        int min_dist = Integer.MAX_VALUE;
+        int l = start;
+        int r = start;
 
-        for(int i=0;i<nums.length;i++){
-            if(nums[i] == target)min_dist = Math.min(Math.abs(i - start) , min_dist);
+        int ldist = 0;
+        int rdist = 0;
+
+        while(l >= 0 || r < nums.length){
+
+            if(l >= 0){
+                if(nums[l] == target){
+                    ldist = Math.abs(l - start);
+                    return ldist;
+                }
+                l--;
+            }
+
+            if(r < nums.length){
+                if(nums[r] == target){
+                    rdist = Math.abs(r - start);
+                    return rdist;
+                }
+                r++;
+            }
         }
 
-        return min_dist;
+        return -1;
     }
 }
