@@ -5,25 +5,25 @@ class Solution {
 
         ArrayList<Character> vows = new ArrayList<>();
 
-        for(int i=0;i<s.length();i++){
-            if(vowels.indexOf(s.charAt(i)) != -1){
-                vows.add(s.charAt(i));
+        for(char c : s.toCharArray()){
+            if(vowels.indexOf(c) != -1){
+                vows.add(c);
             }
         }
 
         Collections.sort(vows);
 
-        String res = "";
+        StringBuilder res = new StringBuilder();
+        int j = 0;
 
-        int j =0;
-
-        for(int i=0;i<s.length();i++){
-            if(vowels.indexOf(s.charAt(i)) != -1){
-                res += vows.get(j++);
+        for(char c : s.toCharArray()){
+            if(vowels.indexOf(c) != -1){
+                res.append(vows.get(j++));
+            } else {
+                res.append(c);
             }
-            else res += s.charAt(i);
         }
-        
-        return res;
+
+        return res.toString();
     }
 }
