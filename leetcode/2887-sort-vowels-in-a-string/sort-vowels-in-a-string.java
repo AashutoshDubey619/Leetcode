@@ -15,10 +15,11 @@ class Solution {
 
         String res = "";
 
+        int j =0;
+
         for(int i=0;i<s.length();i++){
             if(vowels.indexOf(s.charAt(i)) != -1){
-                res += vows.get(0);
-                vows.remove(0);
+                res += vows.get(j++);
             }
             else res += s.charAt(i);
         }
