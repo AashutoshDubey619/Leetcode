@@ -1,25 +1,26 @@
 class Solution {
     public String reverseOnlyLetters(String s) {
         
-        ArrayList<Character> list = new ArrayList<>();
+        char[] arr = s.toCharArray();
+        int i = 0, j = arr.length - 1;
 
-        for(char c : s.toCharArray()){
-            if((c >= 'a' && c <= 'z')  || (c>='A' && c<= 'Z'))list.add(c);
-        }
-
-        Collections.reverse(list);
-
-        StringBuilder sb = new StringBuilder();
-
-        int k = 0;
-
-        for(char c : s.toCharArray()){
-            if(!((c >= 'a' && c <= 'z')  || (c>='A' && c<= 'Z'))){
-                sb.append(c);
+        while(i < j){
+            
+            if(!Character.isLetter(arr[i])){
+                i++;
             }
-            else sb.append(list.get(k++));
+            else if(!Character.isLetter(arr[j])){
+                j--;
+            }
+            else{
+                char temp = arr[i];
+                arr[i] = arr[j];
+                arr[j] = temp;
+                i++;
+                j--;
+            }
         }
 
-        return sb.toString();
+        return new String(arr);
     }
 }
