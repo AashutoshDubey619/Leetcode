@@ -15,8 +15,6 @@
  */
 class Solution {
     public int findBottomLeftValue(TreeNode root) {
-        
-        if(root.left == null && root.right == null)return root.val;
 
         Queue<TreeNode> q = new LinkedList<>();
 
