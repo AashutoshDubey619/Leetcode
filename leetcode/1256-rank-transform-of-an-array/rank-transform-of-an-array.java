@@ -7,11 +7,10 @@ class Solution {
         HashMap<Integer , Integer> map = new HashMap<>();
         HashSet<Integer> set = new HashSet<>();
 
-        ArrayList<Integer> list = new ArrayList<>();
 
        for(int x  : arr)set.add(x);
 
-       for(int it : set)list.add(it);
+        ArrayList<Integer> list = new ArrayList<>(set);
 
         Collections.sort(list);
 
