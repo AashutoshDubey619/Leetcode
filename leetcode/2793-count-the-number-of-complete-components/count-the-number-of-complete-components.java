@@ -36,10 +36,7 @@ class Solution {
         return count;
     }
 
-    public void bfs(int i,
-                    boolean[] vis,
-                    ArrayList<ArrayList<Integer>> adj,
-                    int[] degree) {
+    public void bfs(int i,boolean[] vis,ArrayList<ArrayList<Integer>> adj,int[] degree) {
 
         Queue<Integer> q = new LinkedList<>();
 
