@@ -10,20 +10,15 @@ class Solution {
         int i = 0;
         int j = 2;
 
-        boolean flag = true;
 
         while(j < nums.length){
             if((nums[j] - nums[i]) > k){
-                flag = false;
-                break;
+                return new int[][]{};
             }
             i+=3;
             j+=3;
         }
 
-        if(!flag) return new int[][]{};
-        
-        if(flag){
             int s = 0;
 
             for(int a=0;a<n/3;a++){
@@ -31,7 +26,6 @@ class Solution {
                     res[a][b] = nums[s++];
                 }
             }
-        }
 
         return res;
     }
