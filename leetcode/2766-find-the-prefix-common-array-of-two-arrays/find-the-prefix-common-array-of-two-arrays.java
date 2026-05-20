@@ -5,15 +5,17 @@ class Solution {
 
         int[] C = new int[n];
 
-        HashSet<Integer> set = new HashSet<>();
+        int[] freq = new int[n+1];
 
         int com = 0;
 
         for(int i = 0; i < n; i++) {
+            
+            freq[A[i]]++;
+            if(freq[A[i]] == 2)com++;
 
-            if(!set.add(A[i])) com++;
-
-            if(!set.add(B[i])) com++;
+            freq[B[i]]++;
+            if(freq[B[i]] == 2)com++;
 
             C[i] = com;
         }
