@@ -1,46 +1,44 @@
-/**
- * Definition for singly-linked list.
- * public class ListNode {
- *     int val;
- *     ListNode next;
- *     ListNode() {}
- *     ListNode(int val) { this.val = val; }
- *     ListNode(int val, ListNode next) { this.val = val; this.next = next; }
- * }
- */
 class Solution {
+    
+    class Pair {
+        int idx;
+        int val;
+
+        Pair(int idx, int val) {
+            this.idx = idx;
+            this.val = val;
+        }
+    }
+
     public int[] nextLargerNodes(ListNode head) {
 
-        ListNode temp = head;
+        ArrayList<Integer> res = new ArrayList<>();
 
-        int len = 0;
+        Stack<Pair> stk = new Stack<>();
 
-        while(temp != null){
-            len++;
-            temp = temp.next;
-        }
+        int idx = 0;
 
-        temp = head;
+        while(head != null) {
 
-        int[] nodes = new int[len];
-        int[] res = new int[len];
+            res.add(0);
 
-        int j = 0;
-         while(temp != null){
-            nodes[j] = temp.val;
-            j++;
-            temp = temp.next;
-        }
-
-        Deque<Integer> stk = new ArrayDeque<>();
-
-        for(int i=0;i<nodes.length;i++){
-            while(!stk.isEmpty() && nodes[stk.peek()] < nodes[i]){
-                res[stk.pop()] = nodes[i];
+            while(!stk.isEmpty() && stk.peek().val < head.val) {
+                Pair p = stk.pop();
+                res.set(p.idx, head.val);
             }
-            stk.push(i);
+
+            stk.push(new Pair(idx, head.val));
+
+            idx++;
+            head = head.next;
         }
 
-        return res;
+        int[] ans = new int[res.size()];
+
+        for(int i = 0; i < res.size(); i++) {
+            ans[i] = res.get(i);
+        }
+
+        return ans;
     }
 }
