@@ -32,7 +32,7 @@ class Solution {
             temp = temp.next;
         }
 
-        Stack<Integer> stk = new Stack<>();
+        Deque<Integer> stk = new ArrayDeque<>();
 
         for(int i=0;i<nodes.length;i++){
             while(!stk.isEmpty() && nodes[stk.peek()] < nodes[i]){
