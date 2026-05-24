@@ -1,14 +1,5 @@
 class Solution {
     public int[] occurrencesOfElement(int[] nums, int[] queries, int x) {
-        
-        // HashMap<Integer , ArrayList<Integer>> map = new HashMap<>();
-
-        // for(int i=0;i<nums.length;i++){
-        //     if(nums[i] == x){
-        //         map.putIfAbsent(nums[i] , new ArrayList<>());
-        //         map.get(nums[i]).add(i);
-        //     }
-        // }
 
        ArrayList<Integer> idxs = new ArrayList<>();    
 
