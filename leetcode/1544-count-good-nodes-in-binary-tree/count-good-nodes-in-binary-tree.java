@@ -20,20 +20,20 @@ class Solution {
 
         if(root.left == null && root.right == null)return 1;
 
-        count(root.left , root.val , root.val); 
-        count(root.right , root.val , root.val);   
+        count(root.left ,  root.val); 
+        count(root.right ,  root.val);   
 
         return count;
     }
 
-    public void count(TreeNode root , int val , int max){
+    public void count(TreeNode root ,  int max){
          if(root == null)return;
 
          if(root.val >= max){
             count++;
             max = root.val;
          }
-         count(root.left , val , max);
-         count(root.right , val , max);
+         count(root.left  , max);
+         count(root.right  , max);
     }
 }
