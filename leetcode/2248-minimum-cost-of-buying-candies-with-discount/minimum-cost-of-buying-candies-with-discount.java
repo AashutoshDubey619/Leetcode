@@ -1,24 +1,19 @@
 class Solution {
     public int minimumCost(int[] cost) {
-        
-        int c = 0;
 
         Arrays.sort(cost);
 
-        int i = cost.length - 1;
-        int x = 0;
+        int ans = 0;
+        int cnt = 0;
 
-        while(i >= 0){
-            if(x < 2){
-                c += cost[i];
-                x++;
+        for(int i = cost.length - 1; i >= 0; i--) {
+            if(cnt != 2) {
+                ans += cost[i];
             }
-            else if(x >= 2){
-                x = 0;
-            }
-            i--;
+
+            cnt = (cnt + 1) % 3;
         }
-        
-        return c;
+
+        return ans;
     }
 }
