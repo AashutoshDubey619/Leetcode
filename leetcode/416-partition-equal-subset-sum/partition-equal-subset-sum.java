@@ -26,7 +26,11 @@ class Solution {
 
         boolean ans = false;
 
-        if(target - nums[i] < 0)return skip;
+        if(target - nums[i] < 0){
+            if(skip)dp[i][target] = 1;
+            else dp[i][target] = 0;
+            return skip;
+        }
         else{
             boolean pick = subset(i+1 , target - nums[i] , dp , nums);
             ans = pick || skip;
