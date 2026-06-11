@@ -13,7 +13,7 @@ class Solution {
 
         if(dp[m][n] != -1)return dp[m][n];
 
-        if(text1.charAt(m-1) == text2.charAt(n-1)) return 1 + lcs(text1, m-1, text2, n-1 , dp);
+        if(text1.charAt(m-1) == text2.charAt(n-1)) return dp[m][n] = 1 + lcs(text1, m-1, text2, n-1 , dp);
 
         return dp[m][n] = Math.max(lcs(text1, m-1, text2, n , dp),lcs(text1, m, text2, n-1 , dp));
     }
