@@ -4,7 +4,7 @@ class Solution {
         StringBuilder sb = new StringBuilder(s);
         int n = s.length(); 
 
-        if(s.equals(sb.reverse()))return 0;
+        if(s.equals(sb.reverse().toString())) return 0;
 
         int[][] dp = new int[n+1][n+1];
         
