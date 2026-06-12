@@ -12,10 +12,7 @@ class Solution {
 
         int steps = 0;
 
-        if(word1.length() > sub)steps += (word1.length() - sub);
-        if(word2.length() > sub)steps += (word2.length() - sub);
-
-        return steps;
+        return (m - sub) + (n - sub);
     }
 
     public int lcs(String word1 , int m , String word2 , int n ,int[][]dp){
