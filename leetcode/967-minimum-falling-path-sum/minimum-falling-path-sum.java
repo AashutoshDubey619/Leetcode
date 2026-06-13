@@ -18,7 +18,7 @@ class Solution {
 
     public int find_sum(int r , int c , int m , int n , int[][] matrix , int[][]dp){
         if(c < 0 || c >= n)return (Integer.MAX_VALUE/2);
-        if(r == m-1)return matrix[r][c];
+        if(r == m-1)return dp[r][c] = matrix[r][c];
 
         if(dp[r][c] != Integer.MAX_VALUE)return dp[r][c];
 
