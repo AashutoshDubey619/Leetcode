@@ -20,7 +20,10 @@ class Solution {
         Arrays.sort(arr1);
 
         for(int x : arr1){
-            if(freq[x] != 0)res[k++] = x;
+            if(freq[x] != 0){
+                res[k++] = x;
+                freq[x]--;
+            }
         }
         
 
