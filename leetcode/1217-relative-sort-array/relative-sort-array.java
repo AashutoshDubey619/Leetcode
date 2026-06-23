@@ -9,12 +9,10 @@ class Solution {
 
         int k = 0;
         for(int x : arr2){
-            if(freq[x] != 0){
                 while(freq[x] > 0){
                     freq[x]--;
                     res[k++] = x;
                 }
-            }
         }
 
         Arrays.sort(arr1);
