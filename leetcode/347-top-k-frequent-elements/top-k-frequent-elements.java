@@ -13,20 +13,20 @@ class Solution {
 
         HashMap<Integer , Integer> map = new HashMap<>();
         PriorityQueue<Pair> pq = new PriorityQueue<>((a,b) -> {
-            return b.v - a.v;
+            return a.v - b.v;
         });
 
         for(int x : nums)map.put(x , map.getOrDefault(x ,0)+1);
 
         for(int key : map.keySet()){
-            pq.add(new Pair(key , map.get(key)));
+            pq.offer(new Pair(key , map.get(key)));
+            if(pq.size() > k)pq.poll();
         }
 
         int x = 0;
 
-        while(k > 0){
+        while(!pq.isEmpty()){
             res[x++] = pq.poll().k;
-            k--;
         }
 
         return res;
