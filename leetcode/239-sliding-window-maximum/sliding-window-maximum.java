@@ -1,33 +1,40 @@
 class Solution {
     public int[] maxSlidingWindow(int[] nums, int k) {
+        
+        if(nums.length == 1)return nums;
+        int[] res = new int[nums.length-k+1];
 
-        int n = nums.length;
-        int[] ans = new int[n - k + 1];
+        ArrayDeque<Integer> dq = new ArrayDeque<>();
 
-        Deque<Integer> dq = new ArrayDeque<>();
-        int idx = 0;
+        for(int i=0;i<k;i++){
+            while(!dq.isEmpty() && nums[i] > dq.peekLast()){
+                dq.pollLast();
+            }
+            dq.addLast(nums[i]);
+        }
 
-        for (int i = 0; i < n; i++) {
+        res[0] = dq.peekFirst();
 
-            // window ke bahar wale index hatao
-            if (!dq.isEmpty() && dq.peekFirst() <= i - k) {
+        int i = 0;
+        int j = k;
+
+        while(j < nums.length){
+            while(!dq.isEmpty() && nums[j] > dq.peekLast()){
+                dq.pollLast();
+            }
+            dq.addLast(nums[j]);
+
+            if(nums[i] == dq.peekFirst()){
                 dq.pollFirst();
             }
 
-            // chhote elements hatao (monotonic decreasing)
-            while (!dq.isEmpty() && nums[dq.peekLast()] < nums[i]) {
-                dq.pollLast();
-            }
+            i++;
+            
+            res[i] = dq.peekFirst();
 
-            // current index add karo
-            dq.offerLast(i);
-
-            //  window ban gayi → answer lo
-            if (i >= k - 1) {
-                ans[idx++] = nums[dq.peekFirst()];
-            }
+            j++;
         }
 
-        return ans;
+        return res;
     }
 }
