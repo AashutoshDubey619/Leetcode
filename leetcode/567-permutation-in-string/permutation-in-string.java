@@ -12,7 +12,7 @@ class Solution {
         int k = s1.length();
 
         for(int i=0;i<k;i++){
-           if(s1.indexOf(s2.charAt(i)) != -1) freq2[s2.charAt(i) - 'a']++;
+            freq2[s2.charAt(i) - 'a']++;
         }
 
         if(Arrays.equals(freq1 , freq2))return true;
@@ -21,8 +21,8 @@ class Solution {
         int j = k;
 
         while(j < s2.length()){
-           if(s1.indexOf(s2.charAt(j)) != -1) freq2[s2.charAt(j)-'a']++;
-           if(s1.indexOf(s2.charAt(i)) != -1) freq2[s2.charAt(i)-'a']--;
+            freq2[s2.charAt(j)-'a']++;
+            freq2[s2.charAt(i)-'a']--;
 
             if(Arrays.equals(freq1 , freq2))return true;
 
