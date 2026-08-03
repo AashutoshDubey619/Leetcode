@@ -3,13 +3,22 @@ class Solution {
 
         ArrayList<Integer> list = new ArrayList<>();
 
+        int mx1 = -1;
+        int mx2 = -1;
+
         while(n > 0){
-            list.add(n % 10);
+            int d = (n % 10);
+
+            if(d >= mx1){
+                mx2 = mx1;
+                mx1 = d;
+            }
+
+            if(d >= mx2 && d < mx1)mx2 = d;
+
             n /= 10;
         }
 
-        Collections.sort(list);
-
-        return list.get(list.size()-1) * list.get(list.size()-2);
+        return mx1 * mx2;
     }
 }
