@@ -25,7 +25,7 @@ class Solution {
             }
         }
 
-        // Warna sirf non-suspicious methods return karo
+        
         List<Integer> res = new ArrayList<>();
         for (int i = 0; i < n; i++) {
             if (!vis[i])
