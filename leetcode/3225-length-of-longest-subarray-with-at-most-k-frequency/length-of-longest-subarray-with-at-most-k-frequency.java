@@ -2,8 +2,8 @@ class Solution {
     public int maxSubarrayLength(int[] nums, int k) {
         
         HashMap<Integer , Integer> map = new HashMap<>();
-        ArrayDeque<Integer> dq = new ArrayDeque<>();
-
+        
+        int max_freq = 0;
         int i =0;
         int j =0;
         int longest = 0;
@@ -11,18 +11,13 @@ class Solution {
         while(j < nums.length){
             map.put(nums[j] , map.getOrDefault(nums[j] , 0)+1);
             
-            while(!dq.isEmpty() && dq.getLast() < map.get(nums[j])){
-                dq.pollLast();
-            }
-            dq.addLast(map.get(nums[j]));
+            max_freq = Math.max(max_freq , map.get(nums[j]));
 
-            while(dq.getFirst() > k){
-                if(map.get(nums[i]) == dq.peekFirst()){
-                    map.put(nums[i] , map.get(nums[i])-1);
-                    dq.pollFirst();
-                    dq.addLast(map.get(nums[i]));
+            while(max_freq > k){
+                if(max_freq == map.get(nums[i])){
+                    max_freq = map.get(nums[i])-1;
                 }
-                else map.put(nums[i] , map.get(nums[i])-1);
+                map.put(nums[i] , map.get(nums[i])-1);
                 i++;
             }
 
