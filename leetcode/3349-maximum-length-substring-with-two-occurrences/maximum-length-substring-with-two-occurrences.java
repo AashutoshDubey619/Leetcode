@@ -1,12 +1,8 @@
 class Solution {
     public int maximumLengthSubstring(String s) {
         
-        HashSet<Character> set = new HashSet<>();
         HashMap<Character , Integer> map = new HashMap<>();
 
-        for(char c : s.toCharArray())set.add(c);
-
-        int size = set.size();
         int longest = 0;
 
         int i = 0, j = 0;
