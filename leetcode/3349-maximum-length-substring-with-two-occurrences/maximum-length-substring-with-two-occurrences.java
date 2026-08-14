@@ -11,11 +11,9 @@ class Solution {
 
             map.put(s.charAt(j) , map.getOrDefault(s.charAt(j) , 0 )+1);
 
-            for(char key : map.keySet()){
-                while(map.get(key) > 2){
-                    map.put(s.charAt(i) , map.get(s.charAt(i))-1);
-                    i++;
-                }
+            while(map.get(s.charAt(j)) > 2){
+                map.put(s.charAt(i) , map.get(s.charAt(i))-1);
+                i++;
             }
 
             longest = Math.max(longest , j-i+1);
