@@ -1,33 +1,18 @@
 class Solution {
     public int prefixConnected(String[] words, int k) {
         
+        HashMap<String , Integer> map = new HashMap<>();
         int groups = 0;
-        boolean [] isGrouped = new boolean[words.length];
 
-        for(int i=0;i<words.length;i++){
-            if(isGrouped[i])continue;
+        for(String word : words){
+            if(word.length() < k)continue;
+            String pre = word.substring(0 , k);
 
-            if(words[i].length() < k)continue;
+            map.put(pre , map.getOrDefault(pre , 0)+1);
+        }
 
-            String s1 = words[i].substring(0 , k);
-            boolean hasGrp = false;
-
-            for(int j=i+1;j<words.length;j++){
-                if(words[j].length() < k)continue;
-                if(isGrouped[j])continue;
-
-                String s2 = words[j].substring(0 , k);
-
-                if(s1.equals(s2)){
-                    hasGrp = true;
-                    isGrouped[j] = true;
-                }
-            }
-            
-            if(hasGrp){
-                groups++;
-                isGrouped[i] = true;
-            }
+        for(int val : map.values()){
+            if(val >= 2)groups++;
         }
 
         return groups;
