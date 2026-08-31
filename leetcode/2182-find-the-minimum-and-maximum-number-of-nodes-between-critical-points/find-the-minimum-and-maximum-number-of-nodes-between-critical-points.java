@@ -13,28 +13,41 @@ class Solution {
         
         if(head.next.next == null)return new int[]{-1 , -1};
 
-        ArrayList<Integer> list = new ArrayList<>();
+        int prev = -1;
+        int critc = -1;
+        int first = -1;
 
         ListNode l = head;
         ListNode m = head.next;
         ListNode r = head.next.next;
         int min_dist = Integer.MAX_VALUE;
-        int i = 0;
+        int i = 1;
 
         while(r != null){
-            if((m.val > l.val && m.val > r.val) || (m.val < l.val && m.val < r.val))list.add(i);
+            if((m.val > l.val && m.val > r.val) || (m.val < l.val && m.val < r.val)){
+               
+                if(critc == -1){
+                    critc = i;
+                    first = critc;
+                }
+
+                critc = i;
+
+                if(prev != -1){
+                    min_dist = Math.min(min_dist , critc - prev);
+                }
+                prev = critc;
+
+            }
             l = l.next;
             m = m.next;
             r = r.next;
             i++;
         }
 
-        for(int j=0;j<list.size()-1;j++){
-            min_dist = Math.min(Math.abs(list.get(j) - list.get(j+1)) , min_dist);
-        }
 
-        if(list.size() <= 1)return new int[]{-1 , -1};
-        return new int[]{min_dist , list.get(list.size()-1) - list.get(0)};
+        if(first == critc)return new int[]{-1 , -1};
+        return new int[]{min_dist , critc - first};
 
     }
 }
