@@ -26,11 +26,8 @@ class Solution {
         while(r != null){
             if((m.val > l.val && m.val > r.val) || (m.val < l.val && m.val < r.val)){
                
-                if(critc == -1){
-                    critc = i;
-                    first = critc;
-                }
-
+                if(critc == -1)first = i;
+                
                 critc = i;
 
                 if(prev != -1){
