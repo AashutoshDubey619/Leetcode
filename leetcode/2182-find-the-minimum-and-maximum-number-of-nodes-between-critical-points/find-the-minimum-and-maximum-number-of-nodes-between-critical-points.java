@@ -19,8 +19,6 @@ class Solution {
         ListNode m = head.next;
         ListNode r = head.next.next;
         int min_dist = Integer.MAX_VALUE;
-        ListNode left = null;
-        ListNode right = null;
         int i = 0;
 
         while(r != null){
