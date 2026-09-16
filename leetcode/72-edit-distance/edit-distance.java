@@ -1,24 +1,27 @@
 class Solution {
     public int minDistance(String word1, String word2) {
         
-        int m = word1.length();
-        int n = word2.length();
+        int n = word1.length();
+        int m = word2.length();
 
-        int[][]dp = new int[m+1][n+1];
+        int[][] dp = new int[n+1][m+1];
 
         for(int d[] : dp)Arrays.fill(d , -1);
 
-        return min_dist(m , n , word1 , word2,dp);
+        if(n == 0)return m;
+        if(m == 0)return n;
+
+        return edit(word1 , n , word2 , m , dp);
     }
 
-    public int min_dist(int m , int n ,String word1 , String word2,int[][] dp){
+    public int edit(String word1 , int n , String word2 , int m ,int[][] dp){
         if(m == 0)return n;
         if(n == 0)return m;
 
-        if(dp[m][n] != -1)return dp[m][n];
+        if(dp[n][m] != -1)return dp[n][m];
 
-        if(word1.charAt(m-1) == word2.charAt(n-1))return dp[m][n] = min_dist(m-1,n-1,word1,word2,dp);
+        if(word1.charAt(n-1) == word2.charAt(m-1))return dp[n][m] = edit(word1 , n-1 , word2 , m-1 , dp);
 
-        return dp[m][n] = Math.min(1 + min_dist(m-1,n,word1,word2,dp) , Math.min(1 + min_dist(m-1,n-1,word1,word2,dp) , 1+ min_dist(m,n-1,word1,word2,dp)));
+        return dp[n][m] = 1 + Math.min(edit(word1,n-1, word2 , m-1 , dp) , Math.min(edit(word1, n-1 , word2 , m , dp) , edit(word1 , n , word2 , m-1 , dp)));
     }
 }
