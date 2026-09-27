@@ -20,8 +20,12 @@ class Solution {
                     i++;
                 }
                 
-                if(map.containsKey(sb.toString()))res.append(map.get(sb.toString()));
-                else res.append("?");
+                String key = sb.toString();
+
+                if(map.containsKey(key))
+                    res.append(map.get(key));
+                else
+                    res.append("?");
             }
             else res.append(s.charAt(i));
 
