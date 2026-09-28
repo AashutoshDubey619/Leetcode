@@ -7,19 +7,15 @@ class Solution {
 
         int[] ans = new int[nums.length];
 
-        boolean f = true;
         int k = 0;
 
-        while(f){
-            boolean ff = false;
-            for(int i=0;i<101;i++){
-                if(freq[i] > 0){
+       while(k < nums.length) {
+            for(int i = 0; i < 101; i++) {
+                if(freq[i] > 0) {
                     ans[k++] = i;
                     freq[i]--;
-                    ff = true;
                 }
             }
-            if(!ff)f = !f;
         }
 
         return ans;
