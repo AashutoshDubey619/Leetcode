@@ -11,12 +11,9 @@ class Solution {
             int idx = list.indexOf(queries[i]);
             ans[i] = idx;   
             int temp = list.get(idx);
-
+            
             list.remove(idx);
-            Collections.reverse(list);
-            list.add(temp);
-            Collections.reverse(list);
-
+            list.add(0 ,temp);
         }
 
         return ans;
