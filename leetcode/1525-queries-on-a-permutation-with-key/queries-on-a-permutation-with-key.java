@@ -12,11 +12,11 @@ class Solution {
             ans[i] = idx;   
             int temp = list.get(idx);
 
-            for(int j=idx;j>0;j--){
-                list.set(j , list.get(j-1));
-            }
+            list.remove(idx);
+            Collections.reverse(list);
+            list.add(temp);
+            Collections.reverse(list);
 
-            list.set(0 ,temp);
         }
 
         return ans;
